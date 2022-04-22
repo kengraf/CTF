@@ -1,5 +1,16 @@
 # CTF
 Setup for a some CTFs to used by the UNH cyber club
+AWS Debian
+sudo apt upgrade
+sudo apt update
+update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
+sudo apt install git docker docker-compose
+sudo systemctl start docker
+git clone https://github.com/CTFd/CTFd.git
+cd CTFd
+./prepare.sh
+sudo docker-compose up
+
 
 ## Juice Shop
 General/shared running instance: https://juice-shop.herokuapp.com/#/
