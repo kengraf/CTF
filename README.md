@@ -7,9 +7,9 @@ sudo -i # if you do the command iteractively
 #!/bin/sh # if you elect to use UserData at launch time  
 
 ```
-apt upgrade
-apt update
-update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
+apt upgrade -y
+apt update -y
+update-alternatives --install /usr/bin/python python /usr/bin/python3.10 2
 apt install git docker docker-compose
 systemctl start docker
 git clone https://github.com/CTFd/CTFd.git
@@ -29,8 +29,8 @@ sudo -i # if you do the command iteractively
 #!/bin/sh # if you elect to use UserData at launch time  
 
 ```
-apt upgrade
-apt update
+apt upgrade -y
+apt update -y
 apt install git maven docker docker-compose openjdk-8-jdk
 git clone https://github.com/OWASP/SecurityShepherd.git
 cd SecurityShepherd
