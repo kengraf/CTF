@@ -18,6 +18,29 @@ cd CTFd
 docker-compose up
 ```
 
+## Gencybercoin
+Based on the excellent work by [![Vitaly Ford](https://github.com/vitalyford/gencybercoin)]
+Dockerize instruction now that Heroku limits free dynos [![if new to AWS and Docker](https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/)]
+I put these commands into an AWS template, AWS Linux, t2micro works great.
+```
+#!/bin/sh
+yum -y update
+yum -y install docker python3-pip 
+pip3 install --user docker-compose
+usermod -a -G docker ec2-user
+id ec2-user
+newgrp docker
+systemctl enable docker.service
+systemctl start docker.service
+# My generic AWS Docker template stops here
+wget https://github.com/vitalyford/gencybercoin/archive/refs/heads/master.zip
+unzip master.zip
+cd gencybercoin-master/
+docker-compose up >/tmp/gencybercoin.log &
+# Web page exposed on port 80
+```
+
+
 ## Juice Shop
 Open publicly shared instance by author: https://juice-shop.herokuapp.com/#/
 Heruko button to run your own instance: https://pwning.owasp-juice.shop/part1/running.html
