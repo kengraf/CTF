@@ -19,9 +19,9 @@ docker-compose up
 ```
 
 ## Gencybercoin
-Based on the excellent work by [![Vitaly Ford](https://github.com/vitalyford/gencybercoin)]
-Dockerize instruction now that Heroku limits free dynos [![if new to AWS and Docker](https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/)]
-I put these commands into an AWS template, AWS Linux, t2micro works great.
+Based on the excellent work by [Vitaly Ford](https://github.com/vitalyford/gencybercoin)  
+Dockerize instruction now that Heroku limits free dynos [if new to AWS and Docker](https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/)  
+I put these commands into an AWS template, AWS Linux, t2micro works great.  
 ```
 #!/bin/sh
 yum -y update
