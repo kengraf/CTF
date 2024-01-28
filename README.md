@@ -7,15 +7,25 @@ sudo -i # if you do the command iteractively
 #!/bin/sh # if you elect to use UserData at launch time  
 
 ```
-apt upgrade -y
-apt update -y
-update-alternatives --install /usr/bin/python python /usr/bin/python3.10 2
-apt install git docker docker-compose
+yum update -y
+yum install docker -y
+yum install git -y
+usermod -a -G docker ec2-user
 systemctl start docker
+docker info
+cd /usr/local/bin
+curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-Linux-x86_64" -o docker-compose
+chmod +x docker-compose
+cd /
 git clone https://github.com/CTFd/CTFd.git
-cd CTFd
-./prepare.sh
-docker-compose up
+echo "cd /CTFd" >> /etc/rc.d/rc.local
+echo "systemctl start docker" >> /etc/rc.d/rc.local
+echo "docker-compose up > /CTFd/ctfd.log &" >> /etc/rc.d/rc.local
+chmod +x /etc/rc.d/rc.local
+reboot
+# To import a known set of challenges import the following
+# https://s3.amazonaws.com/cyber-unh.org/CTFD-GenCyber-2023-01-02.zip
+# This will set the admin user as: admin/password
 ```
 
 ## Gencybercoin
