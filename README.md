@@ -1,7 +1,7 @@
 # CTF
 Setup for some CTFs to used by the UNH cyber club
 ## CTFd
-AWS Debian t2.micro
+AWS Linux 2023 t2.micro
 
 sudo -i # if you do the command iteractively  
 #!/bin/sh # if you elect to use UserData at launch time  
@@ -18,6 +18,11 @@ curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compo
 chmod +x docker-compose
 cd /
 git clone https://github.com/CTFd/CTFd.git
+# Fix YML
+cd /CTFd
+sed -i "1i version: '3'" docker-compose.yml
+# end fix
+
 echo "cd /CTFd" >> /etc/rc.d/rc.local
 echo "systemctl start docker" >> /etc/rc.d/rc.local
 echo "docker-compose up > /CTFd/ctfd.log &" >> /etc/rc.d/rc.local
