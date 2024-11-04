@@ -80,3 +80,60 @@ sudo docker-compose up
 
 Username=admin, password=password
 HTTP is usable but SSL/TLS will be broken at this point
+
+
+# PROJECT template
+```
+#!/bin/bash
+yum -y update
+
+# Setup web server
+yum -y install nginx
+cd /usr/share/nginx/html
+cat <<EOT > index.html
+<!-- Yoda’s password is a word on this page -->
+<h1>Straight shooter</h1>
+<h3>Yoda may be a good billiard instructor, but he is blissfully security ignorant</h3>
+EOT
+/bin/systemctl start nginx.service
+
+# setup fswatch (revisit use)
+yum install -y gcc-c++
+cd /tmp
+wget https://github.com/emcrisostomo/fswatch/releases/download/1.17.1/fswatch-1.17.1.tar.gz
+tar -xvf fswatch-1.17.1.tar.gz
+cd fswatch-1.17.1
+./configure
+make
+make install
+
+# Install inotifywait
+# To monitor in a shell: inotifywait -r -m -e access /home
+yum install inotify-tools -y 
+
+# Setup SSH activity  shell
+cat <<EOT > /var/log/ssh_activity.sh
+grep -o -E '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' \$1 | sort -g | uniq -c | sort -g
+grep -o -E  '[iI]nvalid user [a-z]* ' \$1 | tr -s ' ' | cut -f 3 -d ' ' | sort | uniq -c | sort -g
+grep Accepted \$1 | tr -s ' ' | cut -d ' ' -f 1,2,3,7,9
+echo "failed attempts \$(grep -o -E '[iI]nvalid user [a-z]' \$1 | wc | awk '{ printf \$1; }')"
+EOT
+
+# Create user
+useradd --password $(openssl passwd billiard) yoda
+
+# Allow password login
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+/bin/systemctl restart sshd
+
+# Setup ssh hack, ec2-user keys available to everyone
+chmod 755 /home/ec2-user
+cd /home/ec2-user/
+ssh-keygen -b 2048 -f id_rsa -N ""
+cat id_rsa.pub >> .ssh/authorized_keys
+chmod 644 id_rsa
+chmod 755 /home/*
+echo "Need to properly set the file location and permissions for ec2-user's SSH keys" > TODO
+
+# Add the root flag
+echo "AA2E22F35FA4534B" > /root/root.txt```
