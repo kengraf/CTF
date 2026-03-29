@@ -13,9 +13,9 @@ Online: individual student
 
 ### NSF sponsored past events  
 Beginner group trivia from an NSF event:
-[NH](https://ciphermaps.web.app/?region=US) 
-[USA](https://ciphermaps.web.app/?region=NH) 
-[World](https://ciphermaps.web.app/?region=WORLD)  
+[NH](https://cipher-maps.kengraf.com/?region=US) 
+[USA](https://cipher-maps.kengraf.com/?region=NH) 
+[World](https://cipher-maps.kengraf.com/?region=WORLD)  
 All client side code, so advanced students can hack the results.
 
 [UNH GenCyber Camp](https://github.com/kengraf/GenCyber)  A weeks worth of lessons/activities.  
