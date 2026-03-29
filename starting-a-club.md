@@ -13,8 +13,8 @@ Online: individual student
 
 ### NSF sponsored past events  
 Beginner group trivia from an NSF event:
-[NH](https://cipher-maps.kengraf.com/?region=US) 
-[USA](https://cipher-maps.kengraf.com/?region=NH) 
+[NH](https://cipher-maps.kengraf.com/?region=NH) 
+[USA](https://cipher-maps.kengraf.com/?region=US) 
 [World](https://cipher-maps.kengraf.com/?region=WORLD)  
 All client side code, so advanced students can hack the results.
 
