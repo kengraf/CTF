@@ -84,10 +84,3 @@ sudo docker-compose up
 
 Username=admin, password=password
 HTTP is usable but SSL/TLS will be broken at this point
-
-chmod 644 id_rsa
-chmod 755 /home/*
-echo "Need to properly set the file location and permissions for ec2-user's SSH keys" > TODO
-
-# Add the root flag
-echo "AA2E22F35FA4534B" > /root/root.txt```
